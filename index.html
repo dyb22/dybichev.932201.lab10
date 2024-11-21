@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Фокус: Волшебник</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      height: 100vh;
+    }
+
+    /* Занавес */
+    .curtain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('static/image/curtain.jpg') no-repeat center bottom;
+      background-size: cover;
+      transition: transform 0.2s ease, top 1s ease;
+      z-index: 500;
+    }
+
+    .curtain:hover {
+      transform: translateY(-5%);
+    }
+
+    .curtain.hidden {
+      top: -100%;
+    }
+
+    /* Лампа */
+    /* .lamp-container {
+      position: relative;
+       /* top: -50%;
+      left: -50%;  */
+       /* transform: translate(-100%, -96%);  */
+      /* width: 50%;
+      height: 50%;
+      z-index: 5;
+      cursor: pointer;
+      background-color: brown;
+    }  */
+
+    .lamp {
+      position: relative;
+      width: 50%;
+      height: 50%;
+      cursor: pointer;
+      transform: translate(50%, 1%);
+      top: 3px;
+      right: 1px;
+    }
+
+    .lampp{
+     
+      /* background-size: contain; */
+      width: 100%;
+      height: 100%;
+     
+    }
+
+    .light {
+      position: relative;
+     
+      /* left: 50%;  */
+      /* transform: translate(-50%, -40%); */
+     bottom:35%;
+      width: 100%;
+      height: 80%;
+      background: rgba(255, 255, 0, 0.5);
+      clip-path: polygon(45% 0, 55% 0, 100% 100%, 0% 100%);
+      transition: opacity 0.2s ease;
+      opacity: 0;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    .light.active {
+      opacity: 1;
+    }
+
+    
+    
+    
+    .rabbit {
+      /* transform: translate(710%, 570%); */
+      /* bottom: 50px;
+      left: 52%;
+      top: 65%; */
+      /* transform: translate(70%, 53%); */
+      width: 8%; 
+height: auto; 
+left: 62%;
+      position: relative;
+      bottom: 110%;
+      transition: bottom 0.5s ease, opacity 0.2s ease;
+      z-index: 100;
+      
+    }
+
+    .rabbitt{
+      width: 100%;
+      height: 100%;
+    }
+
+   
+    .bird {
+      /* bottom: 50px;
+      left: 50%;
+      transform: translate(30%, 53%); */
+      /* transform: translate(900%, 750%); */
+      width: 6%; 
+height: auto; 
+left: 62%;
+bottom: 120%;
+      position: relative;
+      transition: bottom 0.5s ease, opacity 0.2s ease;
+      z-index: 100;
+      
+      
+    }
+
+    .birdd{
+      width: 100%;
+      height: 100%;
+      
+    }
+
+    
+    .hat {
+       position: relative;
+       bottom: 50px;
+      left: 50%;
+      transform:  rotate(180deg);
+      width: 20%; 
+height: auto; 
+      
+      bottom: 108%;
+      left: 55%;
+      transition: opacity 0.2s ease;
+      z-index: 1000;
+    }
+
+    .hatt{
+      width: 100%;
+      height: 100%;
+     
+    }
+
+    .magic {
+      position: relative;
+     opacity: 0;
+       width: 45%; 
+      height: auto; 
+      bottom: 70%;
+      left: 10%;
+      transition: opacity 0.2s ease;
+    }
+
+    .magicimg{
+      width: 100%;
+     height: 100%; 
+     
+    
+    }
+
+    .moved1 {
+      bottom: 95%; 
+    }
+
+    .moved2 {
+      bottom: 135%; 
+    }
+
+    .container{
+      position: absolute;
+      width: 50%;
+      height: 90%;
+      
+    }
+
+    
+
+.hat
+ {
+  opacity: 0; 
+  visibility: hidden; 
+ 
+}
+ .bird,.rabbit
+{
+  opacity: 0; 
+  visibility: hidden; 
+   transition: opacity 0.2s ease, visibility 0.2s ease;  
+}
+
+.hat{
+  
+  opacity: 0; 
+  visibility: hidden; 
+   transition: opacity 0.2s ease, visibility 0.2s ease;  
+}
+
+
+
+.light.active ~ .magic,
+.light.active ~ .rabbit,
+.light.active ~ .hat,
+.light.active ~ .bird
+  { 
+  opacity: 1;
+  visibility: visible; 
+}
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="curtain"></div>
+  <div class="container">
+  <!-- Занавес -->
+
+
+  <!-- Лампа -->
+  <!-- <div class="lamp-container"> -->
+    <div class="lamp">
+      <img src="static/image/lamp.png" alt="Кролик" class="lampp"  >
+    </div>
+    <div class="light"></div>
+  <!-- </div> -->
+
+  <!-- Свет -->
+  <!-- <div class="light"></div> -->
+
+  <div class="magic">
+    <img src="static/image/magic.jpg" alt="Шляпа" class="magicimg">
+</div>
+  <!-- Сцена -->
+
+  <!-- <div class="magic-stage"> -->
+    <div class="rabbit" onclick="moveBlock1()">
+      <img src="static/image/Rabbit.png" alt="Кролик" class="rabbitt"  >
+    </div>
+
+    <div class="hat">
+      <img src="static/image/Hat.png" alt="Шляпа" class="hatt">
+    </div>
+
+    <div class="bird">
+      <img src="static/image/Bird.png" alt="Птица" class="birdd" onclick="moveBlock2()">
+    </div>
+  </div>
+  <!-- </div> -->
+
+  <script>
+    // Элементы страницы
+    const curtain = document.querySelector('.curtain');
+    const rabbit = document.querySelector('.rabbit');
+    const bird = document.querySelector('.bird');
+    const magic = document.querySelector('.magic');
+   
+  
+    // Открытие занавеса
+    curtain.addEventListener('click', () => {
+      curtain.classList.add('hidden');
+      setTimeout(() => {
+        stage.classList.add('visible');
+      }, 1000); // Плавное появление сцены
+    });
+  
+    // Получаем элементы
+const lamp = document.querySelector('.lamp'); // Блок лампы
+const light = document.querySelector('.light'); // Световой треугольник
+
+// Добавляем обработчик события клика
+lamp.addEventListener('click', () => {
+  light.classList.toggle('active'); // Переключаем класс "active"
+});
+
+
+    function moveBlock1() {
+      
+      rabbit.classList.toggle('moved1');  // При клике добавляем/удаляем класс для анимации
+      bird.classList.toggle('moved2');  // При клике добавляем/удаляем класс для анимации
+    }
+    
+    
+    function moveBlock2() {
+      
+      bird.classList.toggle('moved2');  // При клике добавляем/удаляем класс для анимации
+      rabbit.classList.toggle('moved1');
+    }
+     
+   
+
+  
+
+    // Получаем текущее значение bottom
+   
+    
+    const birdd = document.querySelector('.birdd');
+function toggleDisplay() {
+  const bottomValue = parseFloat(getComputedStyle(bird).bottom);
+  if (bottomValue === window.innerHeight * 1.2) {
+    birdd.style.display = 'none'; 
+    bird.style.display = 'none';// Скрыть, если bottom = 95%
+  } else {
+    birdd.style.display = 'inline-block';
+    bird.style.display = 'inline-block'; // Показать, если bottom != 95%
+  }
+}
+
+// Проверка на изменение положения объекта
+setInterval(toggleDisplay, 100); // Периодическая проверк
+
+  // Пример изменения свойства bottom
+  
+  
+  </script>
+  
+</body>
+</html>
